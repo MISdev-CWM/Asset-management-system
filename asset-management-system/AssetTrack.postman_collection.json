@@ -1,0 +1,55 @@
+{
+  "info": {
+    "name": "AssetTrack - User Creation (Bootstrap Admin)",
+    "description": "Creates the first administrator account via POST /api/auth/bootstrap. Bootstrap is disabled once any user exists. Requires BOOTSTRAP_SECRET to match the server's environment value.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Bootstrap First Admin",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"secret\": \"{{bootstrapSecret}}\",\n  \"username\": \"admin\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"admin123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/bootstrap",
+          "protocol": "http",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "bootstrap"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "bootstrapSecret",
+      "value": "sdfsdgfsadfsadfasfsdfadf",
+      "type": "string"
+    }
+  ]
+}
