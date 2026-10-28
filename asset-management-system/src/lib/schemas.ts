@@ -10,6 +10,8 @@ export const AssetInputSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   type: z.string().trim().min(1, "Type is required"),
   department: z.string().trim().min(1, "Department is required"),
+  plant: z.string().trim().optional().default(""),
+  division: z.string().trim().optional().default(""),
   serialNumber: z.string().trim().min(1, "Serial number is required"),
   imei1: z.string().trim().optional().default(""),
   imei2: z.string().trim().optional().default(""),

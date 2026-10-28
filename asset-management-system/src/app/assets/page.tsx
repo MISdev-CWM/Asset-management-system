@@ -28,13 +28,13 @@ export default function AssetsPage() {
   if (!ready) {
     return (
       <div className="flex min-h-screen items-center justify-center">
-        <p className="text-sm text-muted-foreground">Loading…</p>
+        <p className="text-sm text-muted-foreground">Loading...</p>
       </div>
     );
   }
 
   const rows = assets.filter((a) =>
-    [a.assetNo, a.name, a.type, a.department, currentHolder(a)?.personName ?? ""].join(" ").toLowerCase().includes(q.toLowerCase()),
+    [a.assetNo, a.name, a.type, a.department, a.plant, a.division, currentHolder(a)?.personName ?? ""].join(" ").toLowerCase().includes(q.toLowerCase()),
   );
 
   return (
@@ -44,16 +44,18 @@ export default function AssetsPage() {
     >
       <div className="relative mb-4 max-w-sm">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input className="pl-9" placeholder="Search assets…" value={q} onChange={(e) => setQ(e.target.value)} />
+        <Input className="pl-9" placeholder="Search assets..." value={q} onChange={(e) => setQ(e.target.value)} />
       </div>
-      <div className="rounded-lg border bg-card">
+      <div className="overflow-hidden rounded-2xl border bg-card shadow-sm">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted/50">
             <TableRow>
               <TableHead>Asset No</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Department</TableHead>
+              <TableHead>Plant</TableHead>
+              <TableHead>Division</TableHead>
               <TableHead>Responsible person</TableHead>
             </TableRow>
           </TableHeader>
@@ -61,17 +63,19 @@ export default function AssetsPage() {
             {rows.map((a) => {
               const h = currentHolder(a);
               return (
-                <TableRow key={a.id} className="cursor-pointer" onClick={() => router.push(`/assets/${a.id}`)}>
+                <TableRow key={a.id} className="cursor-pointer transition-colors hover:bg-muted/50" onClick={() => router.push(`/assets/${a.id}`)}>
                   <TableCell className="font-mono text-sm">{a.assetNo}</TableCell>
                   <TableCell className="font-medium">{a.name}</TableCell>
                   <TableCell><Badge variant="secondary">{a.type}</Badge></TableCell>
                   <TableCell>{a.department}</TableCell>
+                  <TableCell>{a.plant || "-"}</TableCell>
+                  <TableCell>{a.division || "-"}</TableCell>
                   <TableCell>{h ? h.personName : <span className="text-muted-foreground">Unassigned</span>}</TableCell>
                 </TableRow>
               );
             })}
             {rows.length === 0 && (
-              <TableRow><TableCell colSpan={5} className="py-10 text-center text-muted-foreground">No assets found.</TableCell></TableRow>
+              <TableRow><TableCell colSpan={7} className="py-10 text-center text-muted-foreground">No assets found.</TableCell></TableRow>
             )}
           </TableBody>
         </Table>

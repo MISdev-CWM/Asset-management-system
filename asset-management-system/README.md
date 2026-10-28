@@ -47,7 +47,7 @@ Auth:
 
 Assets:
 - GET /api/assets?q=&page=&limit= -> { assets, total, page, limit, totalPages }
-- POST /api/assets body: { assetNo?, name, type, department, serialNumber, imei1?, imei2?, price, purchaseDate }
+- POST /api/assets body: { assetNo?, name, type, department, plant?, division?, serialNumber, imei1?, imei2?, price, purchaseDate }
 - GET /api/assets/:id -> asset with handovers/returns
 - PATCH /api/assets/:id body: partial asset fields
 - DELETE /api/assets/:id -> { ok: true } (blocked if history exists)

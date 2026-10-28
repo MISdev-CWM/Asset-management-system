@@ -69,13 +69,15 @@ export default function AssetDetailsPage() {
       }
     >
       <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader><CardTitle>Details</CardTitle></CardHeader>
+        <Card className="lg:col-span-2 overflow-hidden rounded-2xl border-0 shadow-md">
+          <CardHeader className="bg-muted/30"><CardTitle>Details</CardTitle></CardHeader>
           <CardContent className="grid gap-x-6 gap-y-4 sm:grid-cols-2">
             <Info label="Asset No"><span className="font-mono">{asset.assetNo}</span></Info>
             <Info label="Type"><Badge variant="secondary">{asset.type}</Badge></Info>
             <Info label="Name">{asset.name}</Info>
             <Info label="Department">{asset.department}</Info>
+            <Info label="Plant">{asset.plant || "—"}</Info>
+            <Info label="Division">{asset.division || "—"}</Info>
             <Info label="Serial number">{asset.serialNumber || "—"}</Info>
             <Info label="Price">{asset.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}</Info>
             <Info label="IMEI 1">{asset.imei1 || "—"}</Info>
@@ -86,8 +88,8 @@ export default function AssetDetailsPage() {
             </Info>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader><CardTitle>History</CardTitle></CardHeader>
+        <Card className="overflow-hidden rounded-2xl border-0 shadow-md">
+          <CardHeader className="bg-muted/30"><CardTitle>History</CardTitle></CardHeader>
           <CardContent>
             {history.length === 0 ? (
               <p className="text-sm text-muted-foreground">No handovers or returns yet.</p>

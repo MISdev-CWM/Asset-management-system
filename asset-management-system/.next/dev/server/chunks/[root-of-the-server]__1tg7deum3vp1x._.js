@@ -2160,6 +2160,16 @@ const AssetSchema = new Schema({
         required: true,
         trim: true
     },
+    plant: {
+        type: String,
+        default: "",
+        trim: true
+    },
+    division: {
+        type: String,
+        default: "",
+        trim: true
+    },
     serialNumber: {
         type: String,
         required: true,

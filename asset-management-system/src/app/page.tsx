@@ -22,7 +22,7 @@ export default function LoginPage() {
     try {
       const { login } = await import("@/lib/auth-client");
       await login(identifier, password);
-      router.push("/assets");
+      router.push("/counts");
     } catch (err: any) {
       setError(err?.message || "Login failed");
     } finally {

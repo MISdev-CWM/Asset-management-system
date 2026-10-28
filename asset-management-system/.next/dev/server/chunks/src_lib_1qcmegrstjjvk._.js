@@ -28,6 +28,8 @@ const AssetInputSchema = __TURBOPACK__imported__module__$5b$project$5d2f$node_mo
     name: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().min(1, "Name is required"),
     type: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().min(1, "Type is required"),
     department: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().min(1, "Department is required"),
+    plant: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().optional().default(""),
+    division: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().optional().default(""),
     serialNumber: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().min(1, "Serial number is required"),
     imei1: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().optional().default(""),
     imei2: __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$zod$2f$v3$2f$external$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__z__$2e$string$3e$__["z"].string().trim().optional().default(""),
@@ -91,6 +93,8 @@ function toAssetDTO(asset, handovers = [], returns = []) {
         name: asset.name,
         type: asset.type,
         department: asset.department,
+        plant: asset.plant || "",
+        division: asset.division || "",
         serialNumber: asset.serialNumber,
         imei1: asset.imei1 || "",
         imei2: asset.imei2 || "",
@@ -155,6 +159,12 @@ async function listAssets(params) {
                 department: re
             },
             {
+                plant: re
+            },
+            {
+                division: re
+            },
+            {
                 serialNumber: re
             },
             {
@@ -195,6 +205,8 @@ async function createAsset(input) {
         name: data.name,
         type: data.type,
         department: data.department,
+        plant: data.plant || "",
+        division: data.division || "",
         serialNumber: data.serialNumber,
         imei1: data.imei1 || "",
         imei2: data.imei2 || "",
@@ -244,6 +256,8 @@ async function updateAsset(id, input) {
     if (data.name !== undefined) asset.name = data.name;
     if (data.type !== undefined) asset.type = data.type;
     if (data.department !== undefined) asset.department = data.department;
+    if (data.plant !== undefined) asset.plant = data.plant || "";
+    if (data.division !== undefined) asset.division = data.division || "";
     if (data.serialNumber !== undefined) asset.serialNumber = data.serialNumber;
     if (data.imei1 !== undefined) asset.imei1 = data.imei1 || "";
     if (data.imei2 !== undefined) asset.imei2 = data.imei2 || "";
@@ -550,6 +564,16 @@ const AssetSchema = new Schema({
     department: {
         type: String,
         required: true,
+        trim: true
+    },
+    plant: {
+        type: String,
+        default: "",
+        trim: true
+    },
+    division: {
+        type: String,
+        default: "",
         trim: true
     },
     serialNumber: {

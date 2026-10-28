@@ -35,6 +35,8 @@ const AssetSchema = new Schema(
     name: { type: String, required: true, trim: true },
     type: { type: String, required: true, trim: true },
     department: { type: String, required: true, trim: true },
+    plant: { type: String, default: "", trim: true },
+    division: { type: String, default: "", trim: true },
     serialNumber: { type: String, required: true, trim: true },
     imei1: { type: String, default: "", trim: true },
     imei2: { type: String, default: "", trim: true },

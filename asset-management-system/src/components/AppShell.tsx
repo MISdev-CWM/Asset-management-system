@@ -14,31 +14,34 @@ export function AppShell({ title, actions, children }: { title: string; actions?
     router.push("/");
   };
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b bg-sidebar text-sidebar-foreground">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
-          <Link href="/assets" className="flex items-center gap-2 font-semibold tracking-tight">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
+      <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+          <Link href="/counts" className="flex items-center gap-2 font-semibold tracking-tight">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
               <Boxes className="h-4 w-4" />
             </span>
-            AssetTrack
+            <span className="hidden sm:inline">AssetTrack</span>
           </Link>
-          <nav className="flex items-center gap-1">
-            <Button asChild variant="ghost" size="sm" className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-              <Link href="/assets">Current assets</Link>
+          <nav className="flex items-center gap-1 rounded-full border bg-muted/40 p-1">
+            <Button asChild variant="ghost" size="sm" className="rounded-full">
+              <Link href="/assets">Assets</Link>
             </Button>
-            <Button asChild variant="ghost" size="sm" className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-              <Link href="/assets/new"><Plus className="h-4 w-4" />New asset</Link>
+            <Button asChild variant="ghost" size="sm" className="rounded-full">
+              <Link href="/assets/new"><Plus className="h-4 w-4" />New</Link>
             </Button>
-            <Button variant="ghost" size="sm" className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" onClick={onSignOut}>
+            <Button asChild variant="ghost" size="sm" className="rounded-full">
+              <Link href="/counts">Counts</Link>
+            </Button>
+            <Button variant="ghost" size="sm" className="rounded-full" onClick={onSignOut}>
               <LogOut className="h-4 w-4" />Sign out
             </Button>
           </nav>
         </div>
       </header>
-      <main className="mx-auto max-w-6xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-6 py-8">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
           {actions}
         </div>
         {children}

@@ -9,6 +9,8 @@ export type Asset = {
   name: string;
   type: string;
   department: string;
+  plant: string;
+  division: string;
   serialNumber: string;
   imei1: string;
   imei2: string;
@@ -24,7 +26,31 @@ export type Asset = {
 };
 
 export const ASSET_TYPES = ["Laptop", "Desktop", "Mobile Phone", "Tablet", "Monitor", "Printer", "Other"];
-export const DEPARTMENTS = ["IT", "Finance", "HR", "Operations", "Sales", "Marketing"];
+export const DEPARTMENTS = ["Admin", "Finance", "HR", "MIS", "Marketing"];
+export const PLANTS = ["2001-Head office - Corporate Division",
+   "2002-Export Division - HO/MK", 
+   "2003-Scan Division - HO/MK",
+   "2004-Scan Division - Horana Sunquick Plant",
+   "2005-Scan Division - Horana Water Plant",
+   "2006-Scan Division - Delish Plant",
+   "2007-Sugar Division - HO/PG",
+   "2008-Sugar Division - Bond",
+   "2009-HHPC Division - HO/MK",
+   "2010-IPD - HO/MK",
+   "2011-IPD - Horana",
+   "2012-R and AC - HO/MK",
+   "2013-R and AC - Horana",
+   "2014-Hempel Division - HO/MK",
+   "2015-Hempel Division - Bond",
+   "2016-Scan Division - Peanut Manufacturing",
+   "2017-CDL NB Project Bonded WH",
+   "2018-Sugar Division",
+   "2019-Bearing and Power Transmission",
+   "2101-Horana Plant",
+   "2102-Narthupana Plant",
+   "2201-Horana Plant",
+   "2301-KVC - Hanwella",];
+export const DIVISIONS = ["Corporate", "Export", "Scan", "Sugar", "HHPC", "IPD", "R and AC", "Hempel", "Bearing and Power Transmission", "Ceytra", "Ceymac", "KVC"];
 
 let assets: Asset[] = [];
 let loading = false;
@@ -74,6 +100,8 @@ function normalizeAsset(a: any): Asset {
     name: a.name,
     type: a.type,
     department: a.department,
+    plant: a.plant || "",
+    division: a.division || "",
     serialNumber: a.serialNumber,
     imei1: a.imei1 || "",
     imei2: a.imei2 || "",
@@ -171,6 +199,8 @@ export async function addAsset(data: any) {
     name: data.name,
     type: data.type,
     department: data.department,
+    plant: data.plant,
+    division: data.division,
     serialNumber: data.serialNumber,
     imei1: data.imei1,
     imei2: data.imei2,

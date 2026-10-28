@@ -11,6 +11,8 @@ export type AssetDTO = {
   name: string;
   type: string;
   department: string;
+  plant: string;
+  division: string;
   serialNumber: string;
   imei1: string;
   imei2: string;
@@ -32,6 +34,8 @@ function toAssetDTO(asset: any, handovers: any[] = [], returns: any[] = []): Ass
     name: asset.name,
     type: asset.type,
     department: asset.department,
+    plant: asset.plant || "",
+    division: asset.division || "",
     serialNumber: asset.serialNumber,
     imei1: asset.imei1 || "",
     imei2: asset.imei2 || "",
@@ -86,6 +90,8 @@ export async function listAssets(params: { q?: string; page?: number; limit?: nu
       { name: re },
       { type: re },
       { department: re },
+      { plant: re },
+      { division: re },
       { serialNumber: re },
       { currentResponsiblePersonName: re },
       { currentResponsiblePersonEmployeeId: re },
@@ -116,6 +122,8 @@ export async function createAsset(input: unknown) {
     name: data.name,
     type: data.type,
     department: data.department,
+    plant: data.plant || "",
+    division: data.division || "",
     serialNumber: data.serialNumber,
     imei1: data.imei1 || "",
     imei2: data.imei2 || "",
@@ -149,6 +157,8 @@ export async function updateAsset(id: string, input: unknown) {
   if (data.name !== undefined) asset.name = data.name;
   if (data.type !== undefined) asset.type = data.type;
   if (data.department !== undefined) asset.department = data.department;
+  if (data.plant !== undefined) asset.plant = data.plant || "";
+  if (data.division !== undefined) asset.division = data.division || "";
   if (data.serialNumber !== undefined) asset.serialNumber = data.serialNumber;
   if (data.imei1 !== undefined) asset.imei1 = data.imei1 || "";
   if (data.imei2 !== undefined) asset.imei2 = data.imei2 || "";
