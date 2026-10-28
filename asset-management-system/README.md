@@ -1,6 +1,6 @@
 # AssetTrack
 
-Asset management system (TanStack Start + MongoDB).
+Asset management system (Next.js + MongoDB).
 
 ## Prerequisites
 

@@ -1,0 +1,3 @@
+module.exports=[64328,(e,o,n)=>{o.exports=e.x("mongoose-8b99e611e7552af3",()=>require("mongoose-8b99e611e7552af3"))},29286,e=>{"use strict";var o=e.i(64328);let n=e.g._mongooseCache??(e.g._mongooseCache={conn:null,promise:null});async function r(){if(n.conn)return n.conn;let e=process.env.MONGODB_URI;if(!e)throw Error("MONGODB_URI is not set");n.promise||(n.promise=o.default.connect(e,{dbName:process.env.MONGODB_DB_NAME||void 0}));try{n.conn=await n.promise}catch(e){throw n.promise=null,e}return n.conn}e.s(["connectDb",0,r])}];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__1n-y5q6oqs0f0._.js.map

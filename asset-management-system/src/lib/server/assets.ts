@@ -1,4 +1,4 @@
-import "@tanstack/react-start/server-only";
+import "server-only";
 
 import { connectDb } from "./db";
 import { Asset, Handover, ReturnRecord } from "./models";

@@ -1,0 +1,16 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/api/assets/[id]/handovers/route": "/api/assets/[id]/handovers",
+  "/api/assets/[id]/returns/route": "/api/assets/[id]/returns",
+  "/api/assets/[id]/route": "/api/assets/[id]",
+  "/api/assets/route": "/api/assets",
+  "/api/auth/bootstrap/route": "/api/auth/bootstrap",
+  "/api/auth/login/route": "/api/auth/login",
+  "/api/auth/logout/route": "/api/auth/logout",
+  "/api/auth/me/route": "/api/auth/me",
+  "/assets/[id]/page": "/assets/[id]",
+  "/assets/new/page": "/assets/new",
+  "/assets/page": "/assets",
+  "/page": "/"
+}

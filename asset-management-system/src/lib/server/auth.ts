@@ -1,4 +1,4 @@
-import "@tanstack/react-start/server-only";
+import "server-only";
 
 import crypto from "node:crypto";
 import bcrypt from "bcryptjs";
