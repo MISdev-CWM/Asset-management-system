@@ -186,11 +186,24 @@ export function useAsset(id: string) {
 }
 
 export function currentHolder(a: Asset): Handover | undefined {
-  const lastH = a.handovers.at(-1);
+  const lastH = [...a.handovers]
+    .sort((x, y) => {
+      if (x.date !== y.date) return x.date.localeCompare(y.date);
+      return (x.createdAt || "").localeCompare(y.createdAt || "");
+    })
+    .at(-1);
   if (!lastH) return undefined;
-  const lastR = a.returns.at(-1);
-  if (lastR && lastR.date >= lastH.date) return undefined;
-  return lastH;
+  const lastR = [...a.returns]
+    .sort((x, y) => {
+      if (x.date !== y.date) return x.date.localeCompare(y.date);
+      return (x.createdAt || "").localeCompare(y.createdAt || "");
+    })
+    .at(-1);
+  const assigned =
+    !lastR ||
+    lastH.date > lastR.date ||
+    (lastH.date === lastR.date && (lastH.createdAt || "") > (lastR.createdAt || ""));
+  return assigned ? lastH : undefined;
 }
 
 export async function addAsset(data: any) {

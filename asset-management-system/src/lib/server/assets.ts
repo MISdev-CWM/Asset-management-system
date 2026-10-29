@@ -79,7 +79,7 @@ export async function generateAssetNo(): Promise<string> {
 export async function listAssets(params: { q?: string; page?: number; limit?: number }) {
   await connectDb();
   const page = Math.max(1, params.page || 1);
-  const limit = Math.min(100, Math.max(1, params.limit || 50));
+  const limit = Math.min(1000, Math.max(1, params.limit || 50));
   const skip = (page - 1) * limit;
 
   const filter: any = { isDeleted: false };
@@ -103,7 +103,25 @@ export async function listAssets(params: { q?: string; page?: number; limit?: nu
     Asset.countDocuments(filter),
   ]);
 
-  const assets = items.map((a: any) => toAssetDTO(a, [], []));
+  const ids = items.map((a: any) => a._id);
+  const [allHandovers, allReturns] = await Promise.all([
+    Handover.find({ assetId: { $in: ids } }).sort({ date: 1, createdAt: 1 }).lean(),
+    ReturnRecord.find({ assetId: { $in: ids } }).sort({ date: 1, createdAt: 1 }).lean(),
+  ]);
+  const handoversByAsset = new Map<string, any[]>();
+  const returnsByAsset = new Map<string, any[]>();
+  for (const h of allHandovers) {
+    const key = String(h.assetId);
+    if (!handoversByAsset.has(key)) handoversByAsset.set(key, []);
+    handoversByAsset.get(key)!.push(h);
+  }
+  for (const r of allReturns) {
+    const key = String(r.assetId);
+    if (!returnsByAsset.has(key)) returnsByAsset.set(key, []);
+    returnsByAsset.get(key)!.push(r);
+  }
+
+  const assets = items.map((a: any) => toAssetDTO(a, handoversByAsset.get(String(a._id)) ?? [], returnsByAsset.get(String(a._id)) ?? []));
   return { assets, total, page, limit, totalPages: Math.ceil(total / limit) };
 }
 

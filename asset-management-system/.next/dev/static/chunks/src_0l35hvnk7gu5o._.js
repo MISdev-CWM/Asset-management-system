@@ -39,6 +39,11 @@ function AssetsPage() {
     const [ready, setReady] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const assets = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAssets"])();
     const [q, setQ] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [typeFilter, setTypeFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [divisionFilter, setDivisionFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [departmentFilter, setDepartmentFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [plantFilter, setPlantFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [assignmentFilter, setAssignmentFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AssetsPage.useEffect": ()=>{
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getCurrentUser"])().then({
@@ -51,6 +56,46 @@ function AssetsPage() {
     }["AssetsPage.useEffect"], [
         router
     ]);
+    const typeOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "AssetsPage.useMemo[typeOptions]": ()=>Array.from(new Set([
+                ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ASSET_TYPES"],
+                ...assets.map({
+                    "AssetsPage.useMemo[typeOptions]": (a)=>a.type
+                }["AssetsPage.useMemo[typeOptions]"])
+            ])).filter(Boolean).sort()
+    }["AssetsPage.useMemo[typeOptions]"], [
+        assets
+    ]);
+    const divisionOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "AssetsPage.useMemo[divisionOptions]": ()=>Array.from(new Set([
+                ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DIVISIONS"],
+                ...assets.map({
+                    "AssetsPage.useMemo[divisionOptions]": (a)=>a.division
+                }["AssetsPage.useMemo[divisionOptions]"])
+            ])).filter(Boolean).sort()
+    }["AssetsPage.useMemo[divisionOptions]"], [
+        assets
+    ]);
+    const departmentOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "AssetsPage.useMemo[departmentOptions]": ()=>Array.from(new Set([
+                ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DEPARTMENTS"],
+                ...assets.map({
+                    "AssetsPage.useMemo[departmentOptions]": (a)=>a.department
+                }["AssetsPage.useMemo[departmentOptions]"])
+            ])).filter(Boolean).sort()
+    }["AssetsPage.useMemo[departmentOptions]"], [
+        assets
+    ]);
+    const plantOptions = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "AssetsPage.useMemo[plantOptions]": ()=>Array.from(new Set([
+                ...__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PLANTS"],
+                ...assets.map({
+                    "AssetsPage.useMemo[plantOptions]": (a)=>a.plant
+                }["AssetsPage.useMemo[plantOptions]"])
+            ])).filter(Boolean).sort()
+    }["AssetsPage.useMemo[plantOptions]"], [
+        assets
+    ]);
     if (!ready) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex min-h-screen items-center justify-center",
@@ -59,24 +104,42 @@ function AssetsPage() {
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/src/app/assets/page.tsx",
-                lineNumber: 31,
+                lineNumber: 55,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/assets/page.tsx",
-            lineNumber: 30,
+            lineNumber: 54,
             columnNumber: 7
         }, this);
     }
-    const rows = assets.filter((a)=>[
+    const rows = assets.filter((a)=>{
+        const textMatch = [
             a.assetNo,
             a.name,
             a.type,
             a.department,
             a.plant,
             a.division,
-            (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["currentHolder"])(a)?.personName ?? ""
-        ].join(" ").toLowerCase().includes(q.toLowerCase()));
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["currentHolder"])(a)?.personName ?? "",
+            a.currentResponsiblePersonName ?? ""
+        ].join(" ").toLowerCase().includes(q.toLowerCase());
+        const typeMatch = !typeFilter || a.type === typeFilter;
+        const divisionMatch = !divisionFilter || a.division === divisionFilter;
+        const departmentMatch = !departmentFilter || a.department === departmentFilter;
+        const plantMatch = !plantFilter || a.plant === plantFilter;
+        const assigned = a.status === "Assigned" || !!a.currentResponsiblePersonName;
+        const assignmentMatch = assignmentFilter === "all" || (assignmentFilter === "assigned" ? assigned : !assigned);
+        return textMatch && typeMatch && divisionMatch && departmentMatch && plantMatch && assignmentMatch;
+    });
+    const resetFilters = ()=>{
+        setQ("");
+        setTypeFilter("");
+        setDivisionFilter("");
+        setDepartmentFilter("");
+        setPlantFilter("");
+        setAssignmentFilter("all");
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$AppShell$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AppShell"], {
         title: "Current assets",
         actions: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -88,46 +151,173 @@ function AssetsPage() {
                         className: "h-4 w-4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/assets/page.tsx",
-                        lineNumber: 43,
+                        lineNumber: 88,
                         columnNumber: 57
                     }, this),
                     "New asset"
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/assets/page.tsx",
-                lineNumber: 43,
+                lineNumber: 88,
                 columnNumber: 32
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/assets/page.tsx",
-            lineNumber: 43,
+            lineNumber: 88,
             columnNumber: 16
         }, this),
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "relative mb-4 max-w-sm",
+                className: "mb-4 flex flex-col gap-3",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
-                        className: "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "relative max-w-sm",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
+                                className: "absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 92,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                className: "pl-9",
+                                placeholder: "Search assets...",
+                                value: q,
+                                onChange: (e)=>setQ(e.target.value)
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 93,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/assets/page.tsx",
-                        lineNumber: 46,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                        className: "pl-9",
-                        placeholder: "Search assets...",
-                        value: q,
-                        onChange: (e)=>setQ(e.target.value)
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "grid gap-3 sm:grid-cols-2 lg:grid-cols-5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FilterSelect, {
+                                label: "Type",
+                                value: typeFilter,
+                                onChange: setTypeFilter,
+                                options: typeOptions
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 96,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FilterSelect, {
+                                label: "Division",
+                                value: divisionFilter,
+                                onChange: setDivisionFilter,
+                                options: divisionOptions
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 97,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FilterSelect, {
+                                label: "Department",
+                                value: departmentFilter,
+                                onChange: setDepartmentFilter,
+                                options: departmentOptions
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 98,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FilterSelect, {
+                                label: "Plant",
+                                value: plantFilter,
+                                onChange: setPlantFilter,
+                                options: plantOptions
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 99,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "space-y-1",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                        className: "text-xs font-medium text-muted-foreground",
+                                        children: "Assigned"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/assets/page.tsx",
+                                        lineNumber: 101,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                        value: assignmentFilter,
+                                        onChange: (e)=>setAssignmentFilter(e.target.value),
+                                        className: "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "all",
+                                                children: "All"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/assets/page.tsx",
+                                                lineNumber: 107,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "assigned",
+                                                children: "Assigned"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/assets/page.tsx",
+                                                lineNumber: 108,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                                value: "unassigned",
+                                                children: "Unassigned"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/assets/page.tsx",
+                                                lineNumber: 109,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/assets/page.tsx",
+                                        lineNumber: 102,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/assets/page.tsx",
+                                lineNumber: 100,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/assets/page.tsx",
+                        lineNumber: 95,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                            type: "button",
+                            variant: "outline",
+                            size: "sm",
+                            onClick: resetFilters,
+                            children: "Reset filters"
+                        }, void 0, false, {
+                            fileName: "[project]/src/app/assets/page.tsx",
+                            lineNumber: 114,
+                            columnNumber: 11
+                        }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/assets/page.tsx",
-                        lineNumber: 47,
+                        lineNumber: 113,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/assets/page.tsx",
-                lineNumber: 45,
+                lineNumber: 90,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -142,60 +332,60 @@ function AssetsPage() {
                                         children: "Asset No"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 53,
+                                        lineNumber: 121,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Name"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 54,
+                                        lineNumber: 122,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Type"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 55,
+                                        lineNumber: 123,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Department"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 56,
+                                        lineNumber: 124,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Plant"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 57,
+                                        lineNumber: 125,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Division"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 58,
+                                        lineNumber: 126,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                         children: "Responsible person"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 59,
+                                        lineNumber: 127,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/assets/page.tsx",
-                                lineNumber: 52,
+                                lineNumber: 120,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/assets/page.tsx",
-                            lineNumber: 51,
+                            lineNumber: 119,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableBody"], {
@@ -211,7 +401,7 @@ function AssetsPage() {
                                                 children: a.assetNo
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 67,
+                                                lineNumber: 135,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -219,7 +409,7 @@ function AssetsPage() {
                                                 children: a.name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 68,
+                                                lineNumber: 136,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -228,53 +418,53 @@ function AssetsPage() {
                                                     children: a.type
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/assets/page.tsx",
-                                                    lineNumber: 69,
+                                                    lineNumber: 137,
                                                     columnNumber: 30
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 69,
+                                                lineNumber: 137,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                 children: a.department
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 138,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                 children: a.plant || "-"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 71,
+                                                lineNumber: 139,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                 children: a.division || "-"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 72,
+                                                lineNumber: 140,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
-                                                children: h ? h.personName : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: h ? h.personName : a.currentResponsiblePersonName ? a.currentResponsiblePersonName : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "text-muted-foreground",
                                                     children: "Unassigned"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/assets/page.tsx",
-                                                    lineNumber: 73,
-                                                    columnNumber: 50
+                                                    lineNumber: 141,
+                                                    columnNumber: 116
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/assets/page.tsx",
-                                                lineNumber: 73,
+                                                lineNumber: 141,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, a.id, true, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 134,
                                         columnNumber: 17
                                     }, this);
                                 }),
@@ -285,47 +475,95 @@ function AssetsPage() {
                                         children: "No assets found."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/assets/page.tsx",
-                                        lineNumber: 78,
+                                        lineNumber: 146,
                                         columnNumber: 25
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/assets/page.tsx",
-                                    lineNumber: 78,
+                                    lineNumber: 146,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/assets/page.tsx",
-                            lineNumber: 62,
+                            lineNumber: 130,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/assets/page.tsx",
-                    lineNumber: 50,
+                    lineNumber: 118,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/assets/page.tsx",
-                lineNumber: 49,
+                lineNumber: 117,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/assets/page.tsx",
-        lineNumber: 41,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }
-_s(AssetsPage, "zMVGRSXeqSBAgCRbkclZmrXKIHM=", false, function() {
+_s(AssetsPage, "1qfTtuJQgrwoHF6uHpTBI2xK7ds=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$assets$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAssets"]
     ];
 });
 _c = AssetsPage;
-var _c;
+function FilterSelect({ label, value, onChange, options }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "space-y-1",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                className: "text-xs font-medium text-muted-foreground",
+                children: label
+            }, void 0, false, {
+                fileName: "[project]/src/app/assets/page.tsx",
+                lineNumber: 168,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                value: value,
+                onChange: (e)=>onChange(e.target.value),
+                className: "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                        value: "",
+                        children: "All"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/assets/page.tsx",
+                        lineNumber: 174,
+                        columnNumber: 9
+                    }, this),
+                    options.map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                            value: opt,
+                            children: opt
+                        }, opt, false, {
+                            fileName: "[project]/src/app/assets/page.tsx",
+                            lineNumber: 176,
+                            columnNumber: 11
+                        }, this))
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/assets/page.tsx",
+                lineNumber: 169,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/assets/page.tsx",
+        lineNumber: 167,
+        columnNumber: 5
+    }, this);
+}
+_c1 = FilterSelect;
+var _c, _c1;
 __turbopack_context__.k.register(_c, "AssetsPage");
+__turbopack_context__.k.register(_c1, "FilterSelect");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -1123,11 +1361,21 @@ function useAsset(id) {
 }
 _s2(useAsset, "VSNqnyOBw2MZdKbWgtCWx2umxps=");
 function currentHolder(a) {
-    const lastH = a.handovers.at(-1);
+    const lastH = [
+        ...a.handovers
+    ].sort((x, y)=>{
+        if (x.date !== y.date) return x.date.localeCompare(y.date);
+        return (x.createdAt || "").localeCompare(y.createdAt || "");
+    }).at(-1);
     if (!lastH) return undefined;
-    const lastR = a.returns.at(-1);
-    if (lastR && lastR.date >= lastH.date) return undefined;
-    return lastH;
+    const lastR = [
+        ...a.returns
+    ].sort((x, y)=>{
+        if (x.date !== y.date) return x.date.localeCompare(y.date);
+        return (x.createdAt || "").localeCompare(y.createdAt || "");
+    }).at(-1);
+    const assigned = !lastR || lastH.date > lastR.date || lastH.date === lastR.date && (lastH.createdAt || "") > (lastR.createdAt || "");
+    return assigned ? lastH : undefined;
 }
 async function addAsset(data) {
     const payload = {

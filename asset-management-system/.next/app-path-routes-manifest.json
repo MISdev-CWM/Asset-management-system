@@ -12,5 +12,6 @@
   "/assets/[id]/page": "/assets/[id]",
   "/assets/new/page": "/assets/new",
   "/assets/page": "/assets",
+  "/counts/page": "/counts",
   "/page": "/"
 }

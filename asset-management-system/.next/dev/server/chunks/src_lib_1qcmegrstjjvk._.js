@@ -138,7 +138,7 @@ async function generateAssetNo() {
 async function listAssets(params) {
     await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$server$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["connectDb"])();
     const page = Math.max(1, params.page || 1);
-    const limit = Math.min(100, Math.max(1, params.limit || 50));
+    const limit = Math.min(1000, Math.max(1, params.limit || 50));
     const skip = (page - 1) * limit;
     const filter = {
         isDeleted: false
@@ -181,7 +181,38 @@ async function listAssets(params) {
         }).skip(skip).limit(limit).lean(),
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$server$2f$models$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Asset"].countDocuments(filter)
     ]);
-    const assets = items.map((a)=>toAssetDTO(a, [], []));
+    const ids = items.map((a)=>a._id);
+    const [allHandovers, allReturns] = await Promise.all([
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$server$2f$models$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["Handover"].find({
+            assetId: {
+                $in: ids
+            }
+        }).sort({
+            date: 1,
+            createdAt: 1
+        }).lean(),
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$server$2f$models$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["ReturnRecord"].find({
+            assetId: {
+                $in: ids
+            }
+        }).sort({
+            date: 1,
+            createdAt: 1
+        }).lean()
+    ]);
+    const handoversByAsset = new Map();
+    const returnsByAsset = new Map();
+    for (const h of allHandovers){
+        const key = String(h.assetId);
+        if (!handoversByAsset.has(key)) handoversByAsset.set(key, []);
+        handoversByAsset.get(key).push(h);
+    }
+    for (const r of allReturns){
+        const key = String(r.assetId);
+        if (!returnsByAsset.has(key)) returnsByAsset.set(key, []);
+        returnsByAsset.get(key).push(r);
+    }
+    const assets = items.map((a)=>toAssetDTO(a, handoversByAsset.get(String(a._id)) ?? [], returnsByAsset.get(String(a._id)) ?? []));
     return {
         assets,
         total,

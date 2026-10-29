@@ -951,11 +951,21 @@ function useAsset(id) {
 }
 _s2(useAsset, "VSNqnyOBw2MZdKbWgtCWx2umxps=");
 function currentHolder(a) {
-    const lastH = a.handovers.at(-1);
+    const lastH = [
+        ...a.handovers
+    ].sort((x, y)=>{
+        if (x.date !== y.date) return x.date.localeCompare(y.date);
+        return (x.createdAt || "").localeCompare(y.createdAt || "");
+    }).at(-1);
     if (!lastH) return undefined;
-    const lastR = a.returns.at(-1);
-    if (lastR && lastR.date >= lastH.date) return undefined;
-    return lastH;
+    const lastR = [
+        ...a.returns
+    ].sort((x, y)=>{
+        if (x.date !== y.date) return x.date.localeCompare(y.date);
+        return (x.createdAt || "").localeCompare(y.createdAt || "");
+    }).at(-1);
+    const assigned = !lastR || lastH.date > lastR.date || lastH.date === lastR.date && (lastH.createdAt || "") > (lastR.createdAt || "");
+    return assigned ? lastH : undefined;
 }
 async function addAsset(data) {
     const payload = {
